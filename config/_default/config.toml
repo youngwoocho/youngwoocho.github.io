@@ -1,5 +1,5 @@
 baseURL = "https://youngwoocho.github.io" # The URL of your site.
-title = "My Dev Blog" # Title of your site
+title = "Young's Life Blog" # Title of your site
 theme = "zzo" # Name of Zzo theme folder in `themes/`.
 
 defaultContentLanguage = "en" # Default language to use (if you setup multilingual)
