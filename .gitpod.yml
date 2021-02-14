@@ -5,10 +5,13 @@ image:
 tasks:
   - before: >
       source ~/.bashrc
+  - command: >
+      cd ./myblog &&
+      hugo server --baseUrl $(gp url 1313) --appendPort=false # build drafts and open it on port 1313
   - openMode: split-right
     command: echo "Split Terminal"
 
 # List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
 ports:
-  - port: 8080
+  - port: 1313
     onOpen: open-browser
