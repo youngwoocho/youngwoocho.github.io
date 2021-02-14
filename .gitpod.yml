@@ -7,7 +7,7 @@ tasks:
       source ~/.bashrc
   - command: >
       cd ./myblog &&
-      hugo server --baseUrl $(gp url 1313) --appendPort=false # build drafts and open it on port 1313
+      hugo server -D --baseUrl $(gp url 1313) --appendPort=false # build drafts and open it on port 1313
   - openMode: split-right
     command: echo "Split Terminal"
 
