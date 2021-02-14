@@ -28,4 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.HUGOBLOG_TOKEN }}
-          publish_dir: /home/runner/work/youngwoocho.github.io/myblog/publish
+          publish_dir: ./myblog/public
