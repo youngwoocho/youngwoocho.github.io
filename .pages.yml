@@ -6,7 +6,7 @@ content:
   - name: posts
     label: Blog Posts
     type: collection
-    path: content/posts
+    path: myblog/content/en
     format: yaml-frontmatter
     filename: "{primary}.md"
     view:
