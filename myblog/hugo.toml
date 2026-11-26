@@ -1,0 +1,44 @@
+baseURL = "https://youngwoocho.github.io/"
+locale = "en-us"
+title = "Young Blog"
+
+[params]
+  description = "Notes on what I found interesting"
+  author = "Young"
+  defaultTheme = "dark"   # "light" or "dark"
+  ShowReadingTime = true
+  DateFormat = "January 2, 2006"
+  favicon = "favicon.ico"
+
+  # Shown on the home intro card
+  [params.profileMode]
+    subtitle = "Engineer & writer"
+
+  # Social buttons on the home intro card (icon-only: github, linkedin)
+  # [[params.socialIcons]]
+  #   name = "github"
+  #   url = "https://github.com/your-handle"
+  # [[params.socialIcons]]
+  #   name = "linkedin"
+  #   url = "https://www.linkedin.com/in/your-handle/"
+
+# Spine navigation. Mark external links with params.external = true.
+[[menu.main]]
+  identifier = "posts"
+  name = "Posts"
+  url = "/posts/"
+  weight = 15
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+
+[markup.goldmark.renderer]
+  unsafe = true   # allow inline SVG/HTML illustrations in posts
+
+
+# Theme
+[module]
+  [[module.imports]]
+    path = "github.com/its-ammu/hugo-notebook"
