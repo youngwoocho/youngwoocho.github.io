@@ -1,31 +1,36 @@
-name: github pages
-
+name: Deploy Hugo Website on GitHub Pages
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
-
+      - main # Set a branch to deploy
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
-          # extended: true
-
+          extended: true
+      - name: Install Dart Sass
+        run: |
+          mkdir -p "$HOME/.local/lib/dart-sass"
+          RELEASE_URL=$(curl -s https://api.github.com/repos/sass/dart-sass/releases/latest \
+            | jq -r '.assets[] | select(.name | endswith("linux-x64.tar.gz")) | .browser_download_url' \
+            | head -n 1)
+          curl -L "$RELEASE_URL" -o /tmp/dart-sass.tar.gz
+          tar -xzf /tmp/dart-sass.tar.gz -C "$HOME/.local/lib"
+          echo "$HOME/.local/lib/dart-sass" >> "$GITHUB_PATH"
+          "$HOME/.local/lib/dart-sass/sass" --embedded --version
       - name: Build
         working-directory: ./myblog
         run: hugo --minify
-
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./myblog/public
+          publish_branch: gh-pages
